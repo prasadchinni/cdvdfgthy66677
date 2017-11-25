@@ -4,7 +4,7 @@ pipeline {
     stage('Test Docker') {
       agent any
       steps {
-        sh 'docker -v'
+        dockerNode(socket: true, image: 'circleci/node:8.0')
       }
     }
   }
