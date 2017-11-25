@@ -1,0 +1,15 @@
+{
+  "name": "DevopsBackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:digitamizers/DevopsBackend.git",
+  "author": "Arjun Hemrajani <lomkju@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "PORT=80 node index.js"
+  }
+}
