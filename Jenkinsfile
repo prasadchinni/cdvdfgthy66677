@@ -4,7 +4,7 @@ pipeline {
     stage('Test Docker') {
       agent any
       steps {
-        dockerShell(shellScript: 'docker -v')
+        sh 'docker -v'
       }
     }
   }
