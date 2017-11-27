@@ -15,7 +15,6 @@ pipeline {
     }
     stage('Push Image') {
       steps {
-        sh "docker login $DOCKER_URL -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD"
         sh "docker push $DOCKER_SERVER/$DOCKER_IMAGE:$(cat VERSION)"
       }
     }
