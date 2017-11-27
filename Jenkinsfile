@@ -9,5 +9,5 @@ pipeline {
         echo $KUBE_URL
       }
     }
-}
+  }
 }
