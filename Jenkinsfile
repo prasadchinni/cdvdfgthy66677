@@ -1,14 +1,20 @@
 pipeline {
   agent any
+
+  environment {
+   KUBE_URL = credentials('KUBE_URL')
+   KUBE_TOKEN = credentials('KUBE_TOKEN')
+  }
+
   stages {
-    stage('aa') {
+   stage('aa') {
       steps {
         sh 'echo hello'
       }
     }
-    stage('Export Version') {
+  stage('Export Version') {
       steps {
-        sh 'echo nello'
+        sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
       }
     }
   }
