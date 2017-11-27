@@ -1,10 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage('Test Docker') {
-      agent any
+    stage('Build Image') {
       steps {
-        sh 'docker -v'
+        sh 'docker '
+      }
+    }
+    stage('Publish Image') {
+      steps {
+        sh 'docker '
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'curl'
       }
     }
   }
