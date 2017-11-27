@@ -8,11 +8,6 @@ pipeline {
     DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   }
   stages {
-  stage('Extract Version') {
-    steps {
-      export VERSION=$(cat package.json | jq -r ".version")
-    }
-  }
     stage('Build Image') {
       steps {
         docker build -t $DOCKER_URL/$JOB_NAME:$(cat VERSION) .
@@ -20,8 +15,8 @@ pipeline {
     }
     stage('Push Image') {
       steps {
-        docker login $DOCKER_URL -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
-        docker push $DOCKER_SERVER/$DOCKER_IMAGE:$(cat VERSION)
+        sh "docker login $DOCKER_URL -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD"
+        sh "docker push $DOCKER_SERVER/$DOCKER_IMAGE:$(cat VERSION)"
       }
     }
   }
