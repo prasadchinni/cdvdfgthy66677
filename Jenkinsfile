@@ -11,7 +11,6 @@ pipeline {
   stage('Extract Version') {
     steps {
       export VERSION=$(cat package.json | jq -r ".version")
-      echo $VERSION > VERSION
     }
   }
     stage('Build Image') {
