@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    KUBE_URL = cedentials('KUBE_URL')
+    KUBE_URL = credentials('KUBE_URL')
 }
   stages {
     stage('Build Image') {
