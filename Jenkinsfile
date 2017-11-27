@@ -1,11 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Get Version') {
-      steps {
-        sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
-      }
-    }
     stage('Build Image') {
       steps {
         sh 'docker build -t $DOCKER_SERVER/$DOCKER_IMAGE:$(cat VERSION) .'
