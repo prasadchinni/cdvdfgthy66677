@@ -1,11 +1,12 @@
 pipeline {
   agent any
+  environment {
+    KUBE_URL = cedentials('KUBE_URL')
+}
   stages {
     stage('Build Image') {
       steps {
-      withCredentials([usernamePassword(credentialsId: 'KUBE_URL', Secret: 'KUBE_URL')]) {
-        sh 'echo $KUBE_URL'
-      }
+        echo $KUBE_URL
       }
     }
 }
