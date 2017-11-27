@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build Image') {
       steps {
-        echo $KUBE_URL
+        echo "$KUBE_URL"
       }
     }
   }
