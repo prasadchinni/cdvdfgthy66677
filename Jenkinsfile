@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build Image') {
       steps {
-        sh 'docker '
+        sh 'echo $KUBE_URL '
       }
     }
     stage('Publish Image') {
