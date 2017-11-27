@@ -4,6 +4,10 @@ pipeline {
     stage('Build Image') {
       steps {
         sh 'docker build -t $DOCKER_SERVER/$DOCKER_IMAGE:$(cat VERSION) .'
+        waitUntil() {
+          sh 'docker login $DOCKER_SERVER -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD'
+        }
+        
       }
     }
     stage('Push Image') {
