@@ -30,13 +30,13 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
     stage('Build Image') {
         steps {
-          sh 'docker build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
+          sh 'docker $(echo $DOCKER_OPTS) build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
         }
       }
       stage('Push Image') {
           steps {
-            sh 'docker login $DOCKER_SERVER -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD'
-            sh 'docker push $DOCKER_SERVER/$(cat NAME):$(cat VERSION)'
+            sh 'docker $(echo $DOCKER_OPTS) login $DOCKER_SERVER -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD'
+            sh 'docker $(echo $DOCKER_OPTS) push $DOCKER_SERVER/$(cat NAME):$(cat VERSION)'
           }
         }
         stage('Deploy') {
