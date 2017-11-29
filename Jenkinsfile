@@ -30,7 +30,7 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
     stage('Build Image') {
         steps {
-          sh 'docker build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
+          sh 'docker $(cat DOCKER_OPTS) build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
         }
       }
       stage('Push Image') {
