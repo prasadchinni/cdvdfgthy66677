@@ -1,10 +1,14 @@
 pipeline {
   agent any
 
+  environment {
+   KUBE_URL = credentials('arjun.KUBE')
+  }
+
   stages {
   stage('Export Version') {
       steps {
-        sh 'echo $KUBE_URL'
+        sh 'echo $KUBE_URL' 
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
       }
     }
