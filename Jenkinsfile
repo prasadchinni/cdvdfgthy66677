@@ -22,7 +22,7 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
   stage('Export Version & Name') {
       steps {
-        sh 'alias docker="docker $(cat DOCKER_OPTS)"'
+        sh 'alias docker="docker $(echo $DOCKER_OPTS)"'
         sh 'printenv'
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
         sh 'export NAME=$(cat package.json | jq -r ".name" | tr "[:upper:]" "[:lower:]") && echo $NAME > NAME'
@@ -30,7 +30,7 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
     stage('Build Image') {
         steps {
-          sh 'docker $(cat DOCKER_OPTS) build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
+          sh 'docker build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
         }
       }
       stage('Push Image') {
