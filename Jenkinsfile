@@ -13,16 +13,23 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
 }
 
   stages {
+  stage('Setup Docker') {
+      steps {
+        sh 'echo $DOCKER_HOST_CA > ca.pem'
+        sh 'echo $DOCKER_HOST_KEY > key.pem'
+        sh 'echo $DOCKER_HOST_CERT > cert.pem'
+      }
+    }
   stage('Export Version & Name') {
       steps {
-      sh 'printenv'
+        sh 'printenv'
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
         sh 'export NAME=$(cat package.json | jq -r ".name" | tr "[:upper:]" "[:lower:]") && echo $NAME > NAME'
       }
     }
     stage('Build Image') {
         steps {
-          sh 'docker $(echo $DOCKER_OPTS) build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
+          sh 'docker build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
         }
       }
       stage('Push Image') {
