@@ -13,7 +13,7 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   stage('Export Version & Name') {
       steps {
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
-        sh 'export NAME=$(cat package.json | jq -r ".name" | awk '{print tolower($0)}') && echo $NAME > NAME'
+        sh "export NAME=$(cat package.json | jq -r ".name" | awk '{print tolower($0)}') && echo $NAME > NAME"
       }
     }
     stage('Build Image') {
