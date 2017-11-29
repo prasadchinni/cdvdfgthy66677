@@ -15,9 +15,9 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   stages {
   stage('Setup Docker') {
       steps {
-        sh 'echo $DOCKER_HOST_CA > ca.pem'
-        sh 'echo $DOCKER_HOST_KEY > key.pem'
-        sh 'echo $DOCKER_HOST_CERT > cert.pem'
+        sh 'cat $DOCKER_HOST_CA > ca.pem'
+        sh 'cat $DOCKER_HOST_KEY > key.pem'
+        sh 'cat $DOCKER_HOST_CERT > cert.pem'
       }
     }
   stage('Export Version & Name') {
