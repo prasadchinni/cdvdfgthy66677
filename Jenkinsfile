@@ -22,7 +22,7 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
     stage('Build Image') {
         steps {
-          sh 'docker build $(echo $DOCKER_OPTS) -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
+          sh 'docker $(echo $DOCKER_OPTS) build -t $DOCKER_SERVER/$(cat NAME):$(cat VERSION) .'
         }
       }
       stage('Push Image') {
