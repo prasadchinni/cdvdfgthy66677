@@ -22,8 +22,6 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
   stage('Export Version & Name') {
       steps {
-        sh 'alias docker="docker $(echo $DOCKER_OPTS)"'
-        sh 'printenv'
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
         sh 'export NAME=$(cat package.json | jq -r ".name" | tr "[:upper:]" "[:lower:]") && echo $NAME > NAME'
       }
