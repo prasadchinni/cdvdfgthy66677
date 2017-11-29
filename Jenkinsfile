@@ -4,7 +4,9 @@ pipeline {
 environment {
 KUBE_URL = credentials('KUBE_URL')
 KUBE_TOKEN = credentials('KUBE_TOKEN')
-DOCKER_CA = credentials('DOCKER_CA')
+DOCKER_HOST_CA = credentials('DOCKER_HOST_CA')
+DOCKER_HOST_CERT = credentials('DOCKER_HOST_CERT')
+DOCKER_HOST_KEY = credentials('DOCKER_HOST_KEY')
 DOCKER_SERVER = credentials('DOCKER_SERVER')
 DOCKER_USERNAME = credentials('DOCKER_USERNAME')
 DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
@@ -14,7 +16,6 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   stage('Export Version & Name') {
       steps {
       sh 'printenv'
-        sh 'cat $DOCKER_CA'
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
         sh 'export NAME=$(cat package.json | jq -r ".name" | tr "[:upper:]" "[:lower:]") && echo $NAME > NAME'
       }
