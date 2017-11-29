@@ -1,9 +1,6 @@
 pipeline {
   agent any
 
-  environment {
-  }
-
   stages {
   stage('Export Version') {
       steps {
