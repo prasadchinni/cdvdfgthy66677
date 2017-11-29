@@ -4,6 +4,7 @@ pipeline {
 environment {
 KUBE_URL = credentials('KUBE_URL')
 KUBE_TOKEN = credentials('KUBE_TOKEN')
+DOCKER_CA = credentials('DOCKER_CA')
 DOCKER_SERVER = credentials('DOCKER_SERVER')
 DOCKER_USERNAME = credentials('DOCKER_USERNAME')
 DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
