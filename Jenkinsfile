@@ -12,6 +12,8 @@ DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   stages {
   stage('Export Version & Name') {
       steps {
+      sh 'printenv'
+        sh 'cat $DOCKER_CA'
         sh 'export VERSION=$(cat package.json | jq -r ".version") && echo $VERSION > VERSION'
         sh 'export NAME=$(cat package.json | jq -r ".name" | tr "[:upper:]" "[:lower:]") && echo $NAME > NAME'
       }
