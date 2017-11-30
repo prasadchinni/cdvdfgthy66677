@@ -1,5 +1,15 @@
 pipeline {
   agent any
+  environment {
+    KUBE_URL = credentials('KUBE_URL')
+    KUBE_TOKEN = credentials('KUBE_TOKEN')
+    DOCKER_HOST_CA = credentials('DOCKER_HOST_CA')
+    DOCKER_HOST_CERT = credentials('DOCKER_HOST_CERT')
+    DOCKER_HOST_KEY = credentials('DOCKER_HOST_KEY')
+    DOCKER_SERVER = credentials('DOCKER_SERVER')
+    DOCKER_USERNAME = credentials('DOCKER_USERNAME')
+    DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+  }
   stages {
     stage('Setup Docker') {
       steps {
@@ -30,15 +40,5 @@ pipeline {
         sh 'echo hi'
       }
   }
-  }
-  environment {
-    KUBE_URL = credentials('KUBE_URL')
-    KUBE_TOKEN = credentials('KUBE_TOKEN')
-    DOCKER_HOST_CA = credentials('DOCKER_HOST_CA')
-    DOCKER_HOST_CERT = credentials('DOCKER_HOST_CERT')
-    DOCKER_HOST_KEY = credentials('DOCKER_HOST_KEY')
-    DOCKER_SERVER = credentials('DOCKER_SERVER')
-    DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-    DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   }
 }
