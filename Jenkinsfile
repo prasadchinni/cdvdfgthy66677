@@ -73,8 +73,6 @@ PATCH_DATA=\'{
     }
   }
 }\'
-# METHOD=PATCH
-# CONTENT=strategic-merge-patch+json
 METHOD=PUT
 CONTENT=application/json
 if [ "$CREATE" ]
